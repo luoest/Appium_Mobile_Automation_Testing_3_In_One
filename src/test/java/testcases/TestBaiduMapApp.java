@@ -9,12 +9,17 @@ import capbase.BaiduMapCap;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import pages.actions.BaiduMapActions;
+import utilities.StartAndStopServer;
 
 public class TestBaiduMapApp extends BaiduMapCap{
 	// 打开百度地图app, 搜索“国贸”
 
 	@Test
 	public void testBaiduMapApp() throws MalformedURLException, InterruptedException {
+		
+		StartAndStopServer startAndStopServer = new StartAndStopServer();
+		startAndStopServer.startServer();
+		
 		AndroidDriver<MobileElement> driver = baiduMapCapabilities();
 		BaiduMapActions baiduMapActions = new BaiduMapActions(driver);
 		
@@ -28,6 +33,7 @@ public class TestBaiduMapApp extends BaiduMapCap{
 		
 		TimeUnit.SECONDS.sleep(6);
 		driver.quit();
+		startAndStopServer.stopServer();
 		
 	}
 }

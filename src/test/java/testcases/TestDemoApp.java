@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import capbase.DemoAppCap;
 import io.appium.java_client.android.AndroidElement;
 import pages.actions.DemoAppActions;
+import utilities.StartAndStopServer;
 import io.appium.java_client.android.AndroidDriver;
 
 public class TestDemoApp extends DemoAppCap{
@@ -15,6 +16,10 @@ public class TestDemoApp extends DemoAppCap{
 
 	@Test
 	public void testDemoApp() throws MalformedURLException, InterruptedException {
+		
+		StartAndStopServer startAndStopServer = new StartAndStopServer();
+		startAndStopServer.startServer();
+		
 		AndroidDriver<AndroidElement> driver = demoAppCapabilities();
 		DemoAppActions demoAppActions = new DemoAppActions(driver);
 		demoAppActions.clickPreference();
@@ -26,5 +31,6 @@ public class TestDemoApp extends DemoAppCap{
 		
 		TimeUnit.SECONDS.sleep(1);
 		driver.quit();
+		startAndStopServer.stopServer();
 	}
 }
