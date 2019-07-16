@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class StartAndStopServer {
 
 	Runtime runtime = Runtime.getRuntime();
-	// 自动启动appium server
+	// 鍚姩appium server
 	public void startServer() {
 		try {
 			runtime.exec("cmd.exe /c start cmd.exe /k \"appium\"");
@@ -14,7 +14,7 @@ public class StartAndStopServer {
 		}
 	}
 	
-	// 自动关闭appium server
+	// 鍏抽棴appium server
 	public void stopServer() {
 		try {
 			runtime.exec("taskkill /F /IM node.exe");
